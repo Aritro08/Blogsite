@@ -1,0 +1,33 @@
+<% include /Git/blog1/views/partials/header.ejs %>
+
+<div class="ui main text container">
+	<div class="ui huge header">The_Blog</div>
+	<div class="ui top attached segment">
+		<div class="ui divided items">
+			<% blogs.forEach(function(blogs){ %>
+			<div class="item">
+				<div class="image">
+					<img alt="" src="<%= blogs.image %>">
+				</div>
+				<div class="content">
+					<div class="header"><%= blogs.name %></div>
+					<div class="meta">
+						<p> <%= blogs.date.toDateString() %> </p>
+					</div>
+					<div class="description">
+						<p> <%= blogs.body.substring(0,100) %>... </p>
+					</div>
+					<div class="extra">
+						<a class="ui orange floated inverted button" href="/blog/<%= blogs._id %>">
+							Read more
+							<i class="right chevron icon"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+	</div>
+</div>
+
+<% include /Git/blog1/views/partials/footer.ejs %>

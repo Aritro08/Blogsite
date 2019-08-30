@@ -1,0 +1,11 @@
+.menu .icon{
+	font-size: 2em;
+}
+
+.menu .item{
+	font-size: 16px;
+}
+
+#deleted{
+	display: inline;
+}

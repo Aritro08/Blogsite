@@ -1,0 +1,22 @@
+<% include /Git/blog1/views/partials/header.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header">Edit Blog Post</div>
+	<form action="/blog/<%=blog._id%>?_method=PUT" method="POST" class="ui form">
+		<div class="field">
+			<label>Title</label>
+			<input type="text" value="<%=blog.name%>" name="blog[name]">
+		</div>
+		<div class="field">
+			<label>Image</label>
+			<input type="text" value="<%=blog.image%>" name="blog[image]">
+		</div>
+		<div class="field">
+			<label>Blog Content</label>
+			<textarea name="blog[body]"><%=blog.body%></textarea>
+		</div>
+		<input type="submit" class="ui inverted blue button">
+	</form>
+</div>
+
+<% include /Git/blog1/views/partials/footer.ejs %>

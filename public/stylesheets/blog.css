@@ -17,3 +17,7 @@ p{
 .commentAuthor{
 	padding-top:10px;
 }
+
+.ui.message:last-child {
+    margin-bottom: 10px;
+}

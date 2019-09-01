@@ -8,6 +8,7 @@ var express = require("express"),
 	Blog = require("./models/blog.js"),
 	Comment = require("./models/comments.js"),
 	User = require("./models/users.js"),
+	flash = require("connect-flash"),
 	app = express();
 
 app.set("view engine", "ejs");
@@ -15,7 +16,7 @@ mongoose.connect("mongodb://localhost:27017/Blog1", {useNewUrlParser:true});
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
-
+app.use(flash());
 app.use(expressSession({
 	secret: "qwerty",
 	resave: false,
@@ -29,6 +30,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next){
 	res.locals.currentUser = req.user;
+	res.locals.success = req.flash("success");
+	res.locals.error = req.flash("error");
 	next();
 });
 
@@ -240,11 +243,13 @@ app.post("/register", function(req, res){
 		if(err)
 		{
 			console.log(err);
+			req.flash("error", err.message);
 			res.redirect("/register");
 		}
 		else
 		{
 			passport.authenticate("local")(req, res, function(){
+				req.flash("success", "Welcome to The_Blog " + user.username + "!");
 				res.redirect("/blog");
 			})
 		}
@@ -263,6 +268,7 @@ app.post("/login", passport.authenticate("local", {
 
 app.get("/logout", function(req, res){
 	req.logout();
+	req.flash("success", "Successfully logged out");
 	res.redirect("/blog");
 });
 
@@ -272,6 +278,7 @@ function checkLogin(req, res, next)
 	{
 		return next();
 	}
+	req.flash("error", "You must be logged in to do that")
 	res.redirect("/login");
 }
 
@@ -279,7 +286,7 @@ function checkAuth(req, res, next)
 {
 	if(req.isAuthenticated())
 	{
-		Blog.findById(req.param.id, function(err, blog){
+		Blog.findById(req.params.id, function(err, blog){
 			if(err)
 			{
 				console.log(err);
@@ -288,7 +295,7 @@ function checkAuth(req, res, next)
 			{
 				if(blog.author.id.equals(req.user._id))
 				{
-					next()
+					next();
 				}
 				else
 				{

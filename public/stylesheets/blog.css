@@ -6,6 +6,14 @@
 	font-size: 16px;
 }
 
-#deleted{
+.deleted{
 	display: inline;
+}
+
+p{
+	margin:5px 0;
+}
+
+.commentAuthor{
+	padding-top:10px;
 }

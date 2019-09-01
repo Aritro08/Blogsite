@@ -3,7 +3,7 @@
 <head>
 	<title>Blog Site</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
-	<link rel="stylesheet" type="text/css" href="http://192.168.1.12:8887/blog.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/blog.css">
 </head>
 <body>
 	
@@ -19,12 +19,21 @@
 	    		Add new Blog
 	  		</a>
 	  		<div class="right menu">
-	       		<a class="ui item" href="#">
+	  			<% if(!currentUser) { %>
+	       		<a class="ui item" href="/login">
 	      			Log In
 	    		</a>
-	    		<a class="ui item" href="#">
+	    		<a class="ui item" href="/register">
 	      			Sign Up
 	    		</a>
+	    		<% } else { %>
+	    		<a class="ui item" href="#">
+	    			Logged in as <%= currentUser.username %>
+	    		</a>
+	    		<a class="ui item" href="/logout">
+	      			Logout
+	    		</a>
+	    		<% } %>
 	  		</div>
 		</div>
 	</div>

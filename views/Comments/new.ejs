@@ -1,0 +1,14 @@
+<% include /Git/blog1/views/partials/header.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header">Add new comment to <%=blog.name%></div>
+	<form action="/blog/<%=blog._id%>/comments" method="POST" class="ui form">
+		<div class="field">
+			<label>Text</label>
+			<input type="text" name="comment[text]"></input>
+		</div>
+		<input type="submit" class="ui inverted blue button">
+	</form>
+</div>
+
+<% include /Git/blog1/views/partials/footer.ejs %>

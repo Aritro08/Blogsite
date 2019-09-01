@@ -4,21 +4,24 @@
 	<div class="ui huge header">The_Blog</div>
 	<div class="ui top attached segment">
 		<div class="ui divided items">
-			<% blogs.forEach(function(blogs){ %>
+			<% blogs.forEach(function(blog){ %>
 			<div class="item">
 				<div class="image">
-					<img alt="" src="<%= blogs.image %>">
+					<img alt="" src="<%= blog.image %>">
 				</div>
 				<div class="content">
-					<div class="header"><%= blogs.name %></div>
+					<div class="header"><%= blog.name %></div>
 					<div class="meta">
-						<p> <%= blogs.date.toDateString() %> </p>
+						<p> <%= blog.date.toDateString() %> </p>
 					</div>
 					<div class="description">
-						<p> <%= blogs.body.substring(0,100) %>... </p>
+						<p> <%= blog.body.substring(0,90) %>... </p>
+					</div>
+					<div class="author"> 
+						<strong><p>Author: <%= blog.author.username %></p></strong>
 					</div>
 					<div class="extra">
-						<a class="ui orange floated inverted button" href="/blog/<%= blogs._id %>">
+						<a class="ui orange floated inverted button" href="/blog/<%= blog._id %>">
 							Read more
 							<i class="right chevron icon"></i>
 						</a>

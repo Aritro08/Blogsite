@@ -1,0 +1,18 @@
+<% include /Git/blog1/views/partials/header.ejs %>
+
+<div class="ui main text container segment">
+	<div class="ui huge header">Login</div>
+	<form action="/login" method="POST" class="ui form">
+		<div class="field">
+			<label>Username</label>
+			<input type="text" name="username">
+		</div>
+		<div class="field">
+			<label>Password</label>
+			<input type="password" name="password">
+		</div>
+		<input type="submit" class="ui inverted blue button">
+	</form>
+</div>
+
+<% include /Git/blog1/views/partials/footer.ejs %>
